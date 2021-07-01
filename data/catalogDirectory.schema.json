@@ -1,0 +1,360 @@
+{
+    "title": "Catalog Directory",
+    "type": "object",
+    "required": ["directory"],
+    "properties": {
+        "directory": {
+            "type": "array",
+            "format": "grid",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "title": "Layer Properties",
+                "headerTemplate":"{{ i1 }}-   {{ self.properties.id }}/   {{ self.name }}",
+                "format": "categories",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Title"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description"
+                    },
+                    "properties": {
+                        "type": "object",
+                        "title": "Properties",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "description": "Unique Text Id"
+                            },
+                            "path": {
+                                "type": "string",
+                                "description": "Root Path in Directory"
+                            },
+                            "title": {
+                                "type": "string",
+                                "description": "Layer Title"
+                            },
+                            "category": {
+                                "type": "string",
+                                "description": "Layer Category"
+                            },
+                            "directoryType": {
+                                "type": "string",
+                                "description": "Layer Type"
+                            },
+                            "url": {
+                                "type": "string",
+                                "description": "Layer Url"
+                            },
+                            "status": {
+                                "type": "string",
+                                "description": "Status: Active/In-Active"
+                            },
+                            "token": {
+                                "type": "object",
+                                "title": "Token",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "description": "Unique Token-Id"
+                                    },
+                                    "url": {
+                                        "type": "string",
+                                        "description": "URI for token file"
+                                    }
+                                }
+                            },
+                            "dateCreated": {
+                                "type": "string",
+                                "description": "Status: Creation Date",
+                                "format": "date",
+                                "options": {
+                                    "flatpickr": {}
+                                }
+                            },
+                            "dateVerified": {
+                                "type": "string",
+                                "description": "Status: Verification Date",
+                                "format": "date",
+                                "options": {
+                                    "flatpickr": {}
+                                }
+                            },
+                            "role": {
+                                "type": "array",
+                                "format": "table",
+                                "title": "Layer accessibility roles",
+                                "uniqueItems": true,
+                                "items": {
+                                    "type": "string",
+                                    "description": "OWF Roles for Layer Access"
+                                }
+                            }
+                        }
+                    },
+                    "layer": {
+                        "type": "object",
+                        "title": "Layer Control/Params",
+                        "format": "categories",
+                        "properties": {
+                            "params": {
+                                "type": "object",
+                                "title": "Params",
+                                "properties": {
+                                    "opacity": {
+                                        "type": "number",
+                                        "description": "Opacity (range from 0.0 to 1.0)"
+                                    },
+                                    "refreshInterval": {
+                                        "type": "number",
+                                        "description": "Refresh Interval (min)"
+                                    }
+                                }
+                            },
+                            "refreshControl": {
+                                "type": "object",
+                                "title": "Refresh Control",
+                                "format": "categories",
+                                "properties": {
+                                    "refreshInterval": {
+                                        "type": "number",
+                                        "description": "Refresh Interval (min)"
+                                    },
+                                    "level3": {
+                                        "type": "object",
+                                        "title": "RC - Level-3",
+                                        "properties": {
+                                            "zoomMax": {
+                                                "type": "number",
+                                                "description": "RC Level Max Zoom -Exclusive of Level 2/1"
+                                            },
+                                            "zoomMin": {
+                                                "type": "number",
+                                                "description": "RC Level Min Zoom -Exclusive of Level 2/1"
+                                            },
+                                            "refreshInterval": {
+                                                "type": "number",
+                                                "description": "Refresh Interval (min) for Level-3"
+                                            },
+                                            "refreshMode": {
+                                                "type": "string",
+                                                "description": "ondemand, ...."
+                                            },
+                                            "role": {
+                                                "type": "array",
+                                                "format": "table",
+                                                "title": "RC - Level-3 Access Roles",
+                                                "uniqueItems": true,
+                                                "items": {
+                                                    "type": "string",
+                                                    "description": "Role Name for Level 3 Access"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "level2": {
+                                        "type": "object",
+                                        "title": "RC - Level-2",
+                                        "properties": {
+                                            "zoomMax": {
+                                                "type": "number",
+                                                "description": "RC Level Max Zoom -Exclusive of Level 3/1"
+                                            },
+                                            "zoomMin": {
+                                                "type": "number",
+                                                "description": "RC Level Min Zoom -Exclusive of Level 3/1"
+                                            },
+                                            "refreshInterval": {
+                                                "type": "number",
+                                                "description": "Refresh Interval (min) for Level-2"
+                                            },
+                                            "refreshMode": {
+                                                "type": "string",
+                                                "description": "ondemand, ...."
+                                            },
+                                            "role": {
+                                                "type": "array",
+                                                "format": "table",
+                                                "title": "RC - Level-2 Access Roles",
+                                                "uniqueItems": true,
+                                                "items": {
+                                                    "type": "string",
+                                                    "description": "Role Name for Level 2 Access"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "level1": {
+                                        "type": "object",
+                                        "title": "RC - Level-1",
+                                        "properties": {
+                                            "zoomMax": {
+                                                "type": "number",
+                                                "description": "RC Level Max Zoom -Exclusive of Level 3/2"
+                                            },
+                                            "zoomMin": {
+                                                "type": "number",
+                                                "description": "RC Level Min Zoom -Exclusive of Level 3/2"
+                                            },
+                                            "refreshInterval": {
+                                                "type": "number",
+                                                "description": "Refresh Interval (min) for Level-1"
+                                            },
+                                            "refreshMode": {
+                                                "type": "string",
+                                                "description": "ondemand, ...."
+                                            },
+                                            "role": {
+                                                "type": "array",
+                                                "format": "table",
+                                                "title": "RC - Level-1 Access Roles",
+                                                "uniqueItems": true,
+                                                "items": {
+                                                    "type": "string",
+                                                    "description": "Role Name for Level 1 Access"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "services": {
+                                "type": "array",
+                                "format": "grid",
+                                "title": "Service(s)",
+                                "uniqueItems": true,
+                                "items": {
+                                    "type": "object",
+                                    "title": "Layer Services",
+                                    "headerTemplate": "Service -   {{ self.id }}/   {{ self.name }}",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "Unique Id"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Service Name"
+                                        },
+                                        "radio": {
+                                            "type": "string",
+                                            "description": "Radio Group"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "description": "Service End-Point"
+                                        },
+                                        "params": {
+                                            "type": "object",
+                                            "description": "Service Params",
+                                            "format": "normal",
+                                            "properties": {
+                                                "layers": {
+                                                    "type": "string",
+                                                    "description": "Layer Service (layers)"
+                                                },
+                                                "outFields": {
+                                                    "type": "array",
+                                                    "format": "table",
+                                                    "title": "Array of fields from Layer",
+                                                    "uniqueItems": true,
+                                                    "items": {
+                                                        "type": "string",
+                                                        "description": "* = All fields"
+                                                    }
+                                                },
+                                                "definitionExpression": {
+                                                    "type": "string",
+                                                    "description": "Data Query Filter"
+                                                },
+                                                "showLabels": {
+                                                    "type": "boolean",
+                                                    "description": "Show labels for placemarks"
+                                                },
+                                                "labelClass": {
+                                                    "type": "string",
+                                                    "format": "json",
+                                                    "description": "LabelClass JSON object (ESRI model)",
+                                                    "options": {
+                                                        "ace": {
+                                                            "tabSize": 2,
+                                                            "useSoftTabs": true,
+                                                            "wrap": true
+                                                        }
+                                                    }
+                                                },
+                                                "searchOptions": {
+                                                    "type": "string",
+                                                    "format": "json",
+                                                    "description": "SearchOptions JSON object (ESRI model)",
+                                                    "options": {
+                                                        "ace": {
+                                                            "tabSize": 2,
+                                                            "useSoftTabs": true,
+                                                            "wrap": true
+                                                        }
+                                                    }
+                                                },
+                                                "infoTemplateClass": {
+                                                    "type": "string",
+                                                    "format": "json",
+                                                    "description": "InfoTemplateClass JSON object (ESRI model)",
+                                                    "options": {
+                                                        "ace": {
+                                                            "tabSize": 2,
+                                                            "useSoftTabs": true,
+                                                            "wrap": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "notes": {
+                        "type": "array",
+                        "format": "grid",
+                        "title": "Contact Info",
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "object",
+                            "title": "Contact",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name"
+                                },
+                                "company": {
+                                    "type": "string",
+                                    "description": "Company"
+                                },
+                                "department": {
+                                    "type": "string",
+                                    "description": "Department"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "Email"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "description": "Phone"
+                                }
+                            }
+                        }
+                    },
+                    "uuid": {
+                        "type": "string",
+                        "description": "Unique UUID"
+                    }
+                }
+            }
+        }
+    }
+}

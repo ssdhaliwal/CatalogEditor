@@ -15784,7 +15784,9 @@ var ObjectEditor = /*#__PURE__*/function (_AbstractEditor) {
       var result = _get(_getPrototypeOf(ObjectEditor.prototype), "getValue", this).call(this);
 
       var isEmpty = function isEmpty(obj) {
-        return typeof obj === 'undefined' || obj === '' || obj === Object(obj) && Object.keys(obj).length === 0 && obj.constructor === Object;
+        return typeof obj === 'undefined' || obj === '' || 
+          (Array.isArray(obj) && obj.length === 0) ||
+          (obj === Object(obj) && Object.keys(obj).length === 0 && obj.constructor === Object);
       };
 
       if (result && (this.jsoneditor.options.remove_empty_properties || this.options.remove_empty_properties)) {

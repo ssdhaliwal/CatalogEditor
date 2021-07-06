@@ -105,11 +105,11 @@
                                 "title": "Params",
                                 "properties": {
                                     "opacity": {
-                                        "type": "number",
+                                        "type": "string",
                                         "description": "Opacity (range from 0.0 to 1.0)"
                                     },
                                     "refreshInterval": {
-                                        "type": "number",
+                                        "type": "string",
                                         "description": "Refresh Interval (min)"
                                     }
                                 }
@@ -120,7 +120,7 @@
                                 "format": "categories",
                                 "properties": {
                                     "refreshInterval": {
-                                        "type": "number",
+                                        "type": "string",
                                         "description": "Refresh Interval (min)"
                                     },
                                     "level3": {
@@ -128,15 +128,15 @@
                                         "title": "RC - Level-3",
                                         "properties": {
                                             "zoomMax": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Max Zoom -Exclusive of Level 2/1"
                                             },
                                             "zoomMin": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Min Zoom -Exclusive of Level 2/1"
                                             },
                                             "refreshInterval": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "Refresh Interval (min) for Level-3"
                                             },
                                             "refreshMode": {
@@ -160,15 +160,15 @@
                                         "title": "RC - Level-2",
                                         "properties": {
                                             "zoomMax": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Max Zoom -Exclusive of Level 3/1"
                                             },
                                             "zoomMin": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Min Zoom -Exclusive of Level 3/1"
                                             },
                                             "refreshInterval": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "Refresh Interval (min) for Level-2"
                                             },
                                             "refreshMode": {
@@ -192,15 +192,15 @@
                                         "title": "RC - Level-1",
                                         "properties": {
                                             "zoomMax": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Max Zoom -Exclusive of Level 3/2"
                                             },
                                             "zoomMin": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "RC Level Min Zoom -Exclusive of Level 3/2"
                                             },
                                             "refreshInterval": {
-                                                "type": "number",
+                                                "type": "string",
                                                 "description": "Refresh Interval (min) for Level-1"
                                             },
                                             "refreshMode": {
@@ -232,7 +232,7 @@
                                     "headerTemplate": "Service -   {{ self.id }}/   {{ self.name }}",
                                     "properties": {
                                         "id": {
-                                            "type": "number",
+                                            "type": "string",
                                             "description": "Unique Id"
                                         },
                                         "name": {
@@ -309,6 +309,18 @@
                                                             "wrap": true
                                                         }
                                                     }
+                                                },
+                                                "featureReduction": {
+                                                    "type": "string",
+                                                    "format": "json",
+                                                    "description": "Renderer (FeatureReduction) JSON object (ESRI model)",
+                                                    "options": {
+                                                        "ace": {
+                                                            "tabSize": 2,
+                                                            "useSoftTabs": true,
+                                                            "wrap": true
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -351,7 +363,11 @@
                     },
                     "uuid": {
                         "type": "string",
-                        "description": "Unique UUID"
+                        "description": "Unique UUID",
+                        "template": "guidCallback",
+                        "watch": {
+                           "name": "name"
+                        }
                     }
                 }
             }

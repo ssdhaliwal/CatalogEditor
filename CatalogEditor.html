@@ -17,7 +17,7 @@
         <link rel='stylesheet' href='./css/fontawesome.5.6.1.all.css'>
         <style>
             .card-body {
-                padding : 5 px;
+                padding : 8px !important;
             }
 
             #loader {
@@ -42,7 +42,7 @@
     </head>
 
     <body>
-        <div class='container grid-xl' style='max-width: 100%;'>
+        <div class='container grid-xl' style='max-width: 100%; padding-left: 5px; padding-right: 5px;'>
             <div class="row columns md:flex">
                 <div id="loader">Loading...<br/><img src="./images/Preloader_3.gif"></div>
                 <div class='col-12 col-md-12 w-12/12'>
@@ -100,34 +100,15 @@
 
                 var defaultData = {};
                 var defaultSchema = {};
-                var previousGuid = [];
-
-                function guid() {
-                    var d = new Date().getUTCMilliseconds();
-
-                    if (window.performance && typeof window.performance.now === "function") {
-                        d += performance.now(); //use high-precision timer if available
+                
+                function sleep(milliseconds) {
+                    var start = new Date().getTime();
+                    for (var i = 0; i < 1e7; i++) {
+                        if ((new Date().getTime() - start) > milliseconds) {
+                            break;
+                        }
                     }
-
-                    var uuid = 'xxyxxyxx-yxxy-xxyx-xyxx-yxxyxxyxxyxx'.replace(/[xy]/g, function (c) {
-                        var r = (d + Math.random() * 16) % 16 | 0;
-                        d = Math.floor(d / 16);
-                        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-                    });
-
-                    if (previousGuid.includes(uuid)) {
-                        return guid();
-                    }
-
-                    previousGuid.push(uuid);
-                    return uuid;
-                };
-
-                JSONEditor.defaults.callbacks.template = {
-                    "guidCallback": (jseditor,e) => {
-                        return guid();
-                    }
-                };
+                }
 
                 var initJsoneditor = function () { // destroy old JSONEditor instance if exists
                     if (jsoneditor) {
@@ -165,16 +146,28 @@
 
                     jsoneditor.on('change', function () {
                         var json = jsoneditor.getValue();
-                        outputTextarea.value = JSON.stringify(json, null, 2)
+                        outputTextarea.value = JSON.stringify(json);
 
                         // validate
-                        var validationErrors = jsoneditor.validate()
+                        var validationErrors = jsoneditor.validate();
                         if (validationErrors.length) {
-                            validateTextarea.value = JSON.stringify(validationErrors, null, 2)
+                            validateTextarea.value = JSON.stringify(validationErrors, null, 2);
                         } else {
-                            validateTextarea.value = 'valid'
+                            validateTextarea.value = 'valid';
                         }
                     });
+
+                    // debugging only - START
+                    const watcherCallback = function (path) {
+                        console.log(`field with path: [${path}] changed to [${JSON.stringify(this.getEditor(path).getValue())}]`);
+                    }
+
+                    for (let key in jsoneditor.editors) {
+                        if (jsoneditor.editors.hasOwnProperty(key) && key !== 'root') {
+                            jsoneditor.watch(key, watcherCallback.bind(jsoneditor, key));
+                        }
+                    }
+                    // debugging only - END
                 };
 
                 refreshUI = function () {

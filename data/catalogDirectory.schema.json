@@ -362,12 +362,8 @@
                         }
                     },
                     "uuid": {
-                        "type": "string",
-                        "description": "Unique UUID",
-                        "template": "guidCallback",
-                        "watch": {
-                           "name": "name"
-                        }
+                        "type": "uuid",
+                        "description": "Unique UUID"
                     }
                 }
             }

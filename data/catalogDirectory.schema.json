@@ -111,6 +111,21 @@
                                     "refreshInterval": {
                                         "type": "string",
                                         "description": "Refresh Interval (min)"
+                                    },
+                                    "serviceType": {
+                                        "type": "array",
+                                        "format": "select",
+                                        "uniqueItems": true,
+                                        "items": {
+                                            "type": "string",
+                                            "enum": ["wms","feature","dynamic","image","kml"],
+                                            "default": "feature"
+                                        },
+                                        "description": "Service Type (Default=Feature)"
+                                    },
+                                    "intranet": {
+                                        "type": "boolean",
+                                        "description": "*KML* stored locally on CG Server"
                                     }
                                 }
                             },
